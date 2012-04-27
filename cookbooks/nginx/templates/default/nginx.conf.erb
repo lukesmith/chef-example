@@ -12,6 +12,15 @@ events {
 }
 
 http {
+
+  <% unless node[:nginx][:passenger].nil? %>
+  passenger_root <%= node[:nginx][:passenger][:root_dir] %>;
+  passenger_ruby <%= node[:nginx][:passenger][:ruby_dir] %>;
+
+  passenger_pool_idle_time <%= node[:nginx][:passenger][:pool_idle_time] %>;
+  passenger_min_instances <%= node[:nginx][:passenger][:min_instances] %>;
+  <% end %>
+
   include       <%= node[:nginx][:dir] %>/mime.types;
   default_type  application/octet-stream;
 
@@ -33,8 +42,10 @@ http {
   gzip_comp_level <%= node[:nginx][:gzip_comp_level] %>;
   gzip_proxied <%= node[:nginx][:gzip_proxied] %>;
   gzip_types <%= node[:nginx][:gzip_types].join(' ') %>;
+  gzip_buffers <%= node[:nginx][:gzip_buffers] %>;
+  gzip_disable "<%= node[:nginx][:gzip_disable] %>";
+  gzip_vary <%= node[:nginx][:gzip_vary] %>;
   <% end %>
-
   server_names_hash_bucket_size <%= node[:nginx][:server_names_hash_bucket_size] %>;
 
   include <%= node[:nginx][:dir] %>/conf.d/*.conf;

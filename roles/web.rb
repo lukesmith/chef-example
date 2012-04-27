@@ -11,8 +11,8 @@ default_attributes :nginx => {
   :gzip_buffers => '16 8k',
   :gzip_disable => 'MSIE [1-6].(?!.*SV1)',
   :passenger => {
-    :root => '/.passenger',
-    :ruby => '/.ruby',
+    :root_dir => '/.passenger',
+    :ruby_dir => '/.ruby',
     :pool_idle_time => 0,
     :min_instances => 5
   },
