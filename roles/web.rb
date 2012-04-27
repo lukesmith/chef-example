@@ -1,6 +1,6 @@
 name 'webserver'
 description 'The base role for webservers'
-run_list "recipe[apt]", "recipe[apt-update]", "recipe[nginx]"
+run_list "recipe[apt]", "recipe[apt-update]", "recipe[build-essential]", "recipe[passenger::daemon]", "recipe[nginx]"
 
 default_attributes :nginx => {
   :worker_processes => 2,
@@ -11,8 +11,8 @@ default_attributes :nginx => {
   :gzip_buffers => '16 8k',
   :gzip_disable => 'MSIE [1-6].(?!.*SV1)',
   :passenger => {
-    :root_dir => '/.passenger',
-    :ruby_dir => '/.ruby',
+    :root_dir => '/usr/local/rvm/gems/ruby-1.9.3-p125@global/gems/passenger-3.0.11',
+    :ruby_dir => '/usr/local/rvm/wrappers/ruby-1.9.3-p125@global/ruby',
     :pool_idle_time => 0,
     :min_instances => 5
   },
