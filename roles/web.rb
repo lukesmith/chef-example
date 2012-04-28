@@ -5,7 +5,7 @@ run_list "recipe[apt]",
   "recipe[build-essential]",
   "recipe[rvm::vagrant]",
   "recipe[rvm::system_install]",
-  "recipe[passenger::daemon]"
+  "recipe[rvm_passenger::nginx]"
 
 default_attributes(
   :passenger => {
