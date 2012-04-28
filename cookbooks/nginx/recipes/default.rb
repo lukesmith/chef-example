@@ -33,6 +33,12 @@ directory node[:nginx][:log_dir] do
   action :create
 end
 
+directory "#{node[:nginx][:dir]}/sbin" do
+  mode 0755
+  owner "root"
+  group "root"
+end
+
 %w{nxensite nxdissite}.each do |nxscript|
   template "/usr/sbin/#{nxscript}" do
     source "#{nxscript}.erb"

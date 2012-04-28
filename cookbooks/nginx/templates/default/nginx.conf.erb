@@ -13,14 +13,6 @@ events {
 
 http {
 
-  <% unless node[:nginx][:passenger].nil? %>
-  passenger_root <%= node[:nginx][:passenger][:root_dir] %>;
-  passenger_ruby <%= node[:nginx][:passenger][:ruby_dir] %>;
-
-  passenger_pool_idle_time <%= node[:nginx][:passenger][:pool_idle_time] %>;
-  passenger_min_instances <%= node[:nginx][:passenger][:min_instances] %>;
-  <% end %>
-
   include       <%= node[:nginx][:dir] %>/mime.types;
   default_type  application/octet-stream;
 
