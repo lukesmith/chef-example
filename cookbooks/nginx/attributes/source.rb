@@ -26,6 +26,7 @@ set[:nginx][:source][:default_configure_flags] = [
   "--prefix=#{node[:nginx][:source][:prefix]}",
   "--conf-path=#{node[:nginx][:dir]}/nginx.conf"
 ]
+set[:nginx][:install_path] = node[:nginx][:source][:prefix]
 
 default[:nginx][:configure_flags]  = Array.new
 default[:nginx][:source][:url]     = "http://nginx.org/download/nginx-#{node[:nginx][:version]}.tar.gz"
