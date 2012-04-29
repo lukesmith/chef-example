@@ -10,6 +10,8 @@ Vagrant::Config.run do |config|
   # Boot with a GUI so you can see the screen. (Default is headless)
   config.vm.boot_mode = :gui
 
+  config.vm.network :bridged
+
   # Forward a port from the guest to the host, which allows for outside
   # computers to access the VM, whereas host only networking does not.
   config.vm.forward_port 80, 8080
@@ -20,7 +22,7 @@ Vagrant::Config.run do |config|
   #   chef.data_bags_path = "../my-recipes/data_bags"
      chef.add_role "web"
 
-     chef.add_recipe "postgresql::server"
+  #  chef.add_recipe "postgresql::server"
 
      chef.json = { }
 

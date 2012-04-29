@@ -6,6 +6,7 @@ run_list "recipe[apt]",
   "recipe[rvm::vagrant]",
   "recipe[rvm::system]",
   "recipe[rvm_passenger::nginx]",
+  #"recipe[nginx::source]",
   "recipe[sample]"
 
 default_attributes({
@@ -18,7 +19,7 @@ default_attributes({
   },
   :nginx => {
     :configure_flags => ['--with-ipv6', '--with-http_stub_status_module', '--with-http_ssl_module'],
-    :worker_processes => 23,
+    :worker_processes => 2,
     :disable_access_log => true,
     :gzip_http_version => '1.1',
     :gzip_comp_level => 6,
