@@ -6,7 +6,6 @@ run_list "recipe[apt]",
   "recipe[rvm::vagrant]",
   "recipe[rvm::system]",
   "recipe[rvm_passenger::nginx]",
-  #"recipe[nginx::source]",
   "recipe[sample]"
 
 default_attributes({

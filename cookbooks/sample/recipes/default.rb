@@ -1,16 +1,14 @@
+include_recipe "user"
+
 directory "/var/sample_site"
 
-user "deployer" do
-  action :create
-  password "$1$XVndCU6N$1csnq9gj9My18SQDUcTCU."
-  system true
-  shell "/bin/zsh"
-  supports :manage_home => true
-  home "/home/deployer"
+gem_package "ruby-shadow" do
+  action :install
 end
 
-generate_ssh_keys do
-  user_account "deployer"
+user_account 'deployer' do
+  comment   'Deployment user'
+  password  '$1$XVndCU6N$1csnq9gj9My18SQDUcTCU.'
 end
 
 directory "/opt/applications" do
@@ -23,7 +21,7 @@ file "/var/sample_site/index.html" do
 end
 
 file "#{node[:nginx][:dir]}/sites-available/sample_site" do
-  content "server { root /var/sample_site; }"
+  content "server { root /opt/applications/pubbr/current/public/; }"
 end
 
 nginx_site "sample_site"
