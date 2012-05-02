@@ -1,7 +1,5 @@
 include_recipe "user"
 
-directory "/var/sample_site"
-
 gem_package "ruby-shadow" do
   action :install
 end
@@ -20,12 +18,14 @@ directory "/opt/applications" do
   mode 0755
 end
 
-file "/var/sample_site/index.html" do
+directory "/opt/applications/sample_site"
+
+file "/opt/applications/sample_site/index.html" do
   content "<h1>Hello world from sample site</h1>"
 end
 
-#file "#{node[:nginx][:dir]}/sites-available/sample_site" do
-#  content "server { root /opt/applications/pubbr/current/public/; }"
-#end
+file "#{node[:nginx][:dir]}/sites-available/sample_site" do
+  content "server { root /opt/applications/sample_site/; }"
+end
 
-#nginx_site "sample_site"
+nginx_site "sample_site"
